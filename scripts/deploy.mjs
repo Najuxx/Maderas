@@ -6,22 +6,9 @@ import path from 'path'
 const isDryRun = process.argv.includes('--dry')
 
 // Leer credenciales de variables de entorno (cargadas por node --env-file=.env.local)
-let host = process.env.FTP_HOST
-let user = process.env.FTP_USER
-let password = process.env.FTP_PASSWORD
-
-// Fallback en memoria si el usuario las colocó provisionalmente en .env.example
-if ((!host || !user || !password) && fs.existsSync('.env.example')) {
-  try {
-    const raw = fs.readFileSync('.env.example', 'utf-8')
-    for (const line of raw.split('\n')) {
-      const trimmed = line.trim()
-      if (trimmed.startsWith('FTP_HOST=')) host = host || trimmed.slice(9).trim()
-      if (trimmed.startsWith('FTP_USER=')) user = user || trimmed.slice(9).trim()
-      if (trimmed.startsWith('FTP_PASSWORD=')) password = password || trimmed.slice(13).trim()
-    }
-  } catch {}
-}
+const host = process.env.FTP_HOST
+const user = process.env.FTP_USER
+const password = process.env.FTP_PASSWORD
 
 if (!host || !user || !password) {
   console.error('\n❌ Error: Faltan credenciales FTP (FTP_HOST, FTP_USER, FTP_PASSWORD).')

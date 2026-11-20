@@ -20,13 +20,7 @@ export function Favoritos() {
   // Si no hay sesión, mostramos el bottom sheet directamente al montar
   React.useEffect(() => {
     if (!user) {
-      try {
-        if (!sessionStorage.getItem('maderas_guest_dismissed_auth')) {
-          setSheetOpen(true)
-        }
-      } catch (_) {
-        setSheetOpen(true)
-      }
+      setSheetOpen(true)
     }
   }, [user])
 

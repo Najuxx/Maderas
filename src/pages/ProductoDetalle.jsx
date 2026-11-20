@@ -28,17 +28,12 @@ export function ProductoDetalle() {
 
   const imageBtnRef = useRef(null)
 
+  const favBtnRef = useRef(null)
   const favActive = product ? isFavorite(product.id) : false
 
   const handleFavorite = () => {
     if (!user) {
-      try {
-        if (!sessionStorage.getItem('maderas_guest_dismissed_auth')) {
-          setSheetOpen(true)
-        }
-      } catch (_) {
-        setSheetOpen(true)
-      }
+      setSheetOpen(true)
       return
     }
     if (product) toggleFavorite(product.id)
@@ -159,6 +154,7 @@ export function ProductoDetalle() {
 
         {/* Corazón de favoritos */}
         <button
+          ref={favBtnRef}
           type="button"
           className={`product-card-fav-btn product-detail-fav-btn ${favActive ? 'product-card-fav-btn--active' : ''}`}
           aria-label={favActive ? `Quitar ${product.name} de favoritos` : `Guardar ${product.name} en favoritos`}
@@ -284,7 +280,7 @@ export function ProductoDetalle() {
       )}
 
       {/* Panel inferior para usuarios no registrados */}
-      <AccountBottomSheet isOpen={sheetOpen} onClose={() => setSheetOpen(false)} />
+      <AccountBottomSheet isOpen={sheetOpen} onClose={() => setSheetOpen(false)} triggerRef={favBtnRef} />
     </article>
   )
 }

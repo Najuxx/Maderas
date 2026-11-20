@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { ProductImage } from './ProductImage'
 import { useCart } from '../context/CartContext'
@@ -11,6 +11,7 @@ export function ProductCard({ product }) {
   const { user } = useAuth()
   const { isFavorite, toggleFavorite } = useFavorites()
   const [sheetOpen, setSheetOpen] = useState(false)
+  const favBtnRef = useRef(null)
 
   const formattedPrice = new Intl.NumberFormat('es-AR', {
     style: 'currency',
@@ -33,13 +34,7 @@ export function ProductCard({ product }) {
     e.preventDefault()
     e.stopPropagation()
     if (!user) {
-      try {
-        if (!sessionStorage.getItem('maderas_guest_dismissed_auth')) {
-          setSheetOpen(true)
-        }
-      } catch (_) {
-        setSheetOpen(true)
-      }
+      setSheetOpen(true)
       return
     }
     toggleFavorite(product.id)
@@ -69,6 +64,7 @@ export function ProductCard({ product }) {
 
           {/* Corazón de favoritos */}
           <button
+            ref={favBtnRef}
             type="button"
             className={`product-card-fav-btn ${favActive ? 'product-card-fav-btn--active' : ''}`}
             aria-label={favActive ? `Quitar ${product.name} de favoritos` : `Guardar ${product.name} en favoritos`}
@@ -139,7 +135,7 @@ export function ProductCard({ product }) {
         </div>
       </div>
 
-      <AccountBottomSheet isOpen={sheetOpen} onClose={() => setSheetOpen(false)} />
+      <AccountBottomSheet isOpen={sheetOpen} onClose={() => setSheetOpen(false)} triggerRef={favBtnRef} />
     </>
   )
 }

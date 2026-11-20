@@ -1,115 +1,32 @@
 import React from 'react'
-
-const terminosData = {
-  titulo: 'Términos y condiciones',
-  actualizacion: 'Última actualización: noviembre de 2026',
-  aviso: 'Este texto es un modelo para un proyecto demostrativo y no constituye asesoramiento legal. Revisalo y adaptalo antes de usarlo en un comercio real.',
-  secciones: [
-    {
-      titulo: '1. Sobre este sitio',
-      parrafos: [
-        'MADERAS es un sitio demostrativo desarrollado como proyecto académico: práctico final de un curso de React y trabajo de diseño UX/UI.',
-        'Los productos, precios y descripciones son ilustrativos y no constituyen una oferta comercial real. Las imágenes de los productos fueron generadas con inteligencia artificial con fines ilustrativos.'
-      ]
-    },
-    {
-      titulo: '2. Aceptación de los términos',
-      parrafos: [
-        'Al usar el sitio aceptás estos términos y condiciones. Si no estás de acuerdo, te pedimos que no lo utilices.'
-      ]
-    },
-    {
-      titulo: '3. Uso del sitio',
-      parrafos: [
-        'Podés navegar el catálogo, usar el carrito y armar pedidos sin necesidad de crear una cuenta.',
-        'Te comprometés a usar el sitio de forma lícita y a no intentar vulnerar su seguridad, alterar su funcionamiento ni acceder a datos de otras personas.'
-      ]
-    },
-    {
-      titulo: '4. Cuenta de usuario',
-      parrafos: [
-        'Crear una cuenta es opcional. Con ella podés guardar favoritos, acumular puntos, acceder a descuentos y personalizar tu perfil.',
-        'Sos responsable de mantener la confidencialidad de tu contraseña y de la actividad realizada con tu cuenta. Podés eliminar tu cuenta en cualquier momento desde Perfil, en “Editar perfil”.'
-      ]
-    },
-    {
-      titulo: '5. Datos personales',
-      parrafos: [
-        'Si creás una cuenta, guardamos tu email, tu nombre y, de forma opcional, tu teléfono, ciudad, apodo, avatar y material favorito. También guardamos tus favoritos, tus pedidos y tus puntos.',
-        'Usamos estos datos únicamente para que el sitio funcione: iniciar sesión, mostrar tu perfil, calcular tus puntos y descuentos, y registrar tus pedidos. No vendemos tus datos a terceros. Los datos se almacenan en un servicio de base de datos en la nube.',
-        'Podés acceder a tus datos, corregirlos y eliminarlos desde tu perfil, y eliminar tu cuenta por completo. Tus derechos sobre tus datos personales se rigen por la Ley 25.326 de Protección de los Datos Personales de la República Argentina.'
-      ]
-    },
-    {
-      titulo: '6. Pedidos',
-      parrafos: [
-        'Los pedidos se envían por WhatsApp. Enviar el mensaje no implica que el pedido esté confirmado: queda confirmado cuando recibís nuestra respuesta.',
-        'Los precios, la disponibilidad y los plazos pueden variar y se confirman por ese medio. El pago, el envío o el retiro se coordinan por WhatsApp.'
-      ]
-    },
-    {
-      titulo: '7. Puntos y descuentos',
-      parrafos: [
-        'Al crear tu cuenta recibís 500 puntos de bienvenida. Cada $5.000 pagados en un pedido con cuenta suman 500 puntos, calculados sobre el monto efectivamente pagado, es decir, ya con el descuento aplicado.',
-        'Cada 1.000 puntos acumulados otorgan un 5% de descuento en tus pedidos, hasta un máximo del 20%.',
-        'Los puntos no tienen valor monetario, no son transferibles y no se gastan al aplicar un descuento. Estas reglas pueden modificarse, y los puntos pueden ajustarse ante errores.'
-      ]
-    },
-    {
-      titulo: '8. Propiedad intelectual',
-      parrafos: [
-        'El diseño, el código y los contenidos del sitio forman parte de un proyecto académico. Su reproducción requiere autorización de su autor.'
-      ]
-    },
-    {
-      titulo: '9. Accesibilidad',
-      parrafos: [
-        'El sitio busca ajustarse a las pautas WCAG 2.2 de nivel AA e incluye un panel de accesibilidad. Si encontrás una barrera, escribinos por WhatsApp para que podamos corregirla.'
-      ]
-    },
-    {
-      titulo: '10. Limitación de responsabilidad',
-      parrafos: [
-        'El sitio se ofrece tal como está, sin garantías de disponibilidad continua: está alojado en un servicio de hosting gratuito y puede presentar interrupciones.'
-      ]
-    },
-    {
-      titulo: '11. Cambios en estos términos',
-      parrafos: [
-        'Podemos actualizar estos términos. La fecha de la última actualización figura al inicio de esta página.'
-      ]
-    },
-    {
-      titulo: '12. Contacto',
-      parrafos: [
-        'Para consultas sobre estos términos o sobre tus datos, escribinos por WhatsApp desde el enlace del pie de página.'
-      ]
-    }
-  ]
-}
+import terminosData from '../content/terminos.json'
 
 export function Terminos() {
   return (
     <div className="page-section terminos-page">
-      <h1 className="page-title">{terminosData.titulo}</h1>
-      <p className="terminos-updated">{terminosData.actualizacion}</p>
+      <div className="terminos-container">
+        <h1 className="page-title">{terminosData.titulo}</h1>
+        <p className="terminos-updated">{terminosData.actualizacion}</p>
 
-      <div className="terminos-aviso" role="note">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" />
-        </svg>
-        <span>{terminosData.aviso}</span>
-      </div>
+        <div className="terminos-aviso" role="note">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="8" x2="12" y2="12" />
+            <line x1="12" y1="16" x2="12.01" y2="16" />
+          </svg>
+          <span>{terminosData.aviso}</span>
+        </div>
 
-      <div className="terminos-secciones">
-        {terminosData.secciones.map((sec, i) => (
-          <section key={i} className="terminos-seccion">
-            <h2 className="terminos-seccion-titulo">{sec.titulo}</h2>
-            {sec.parrafos.map((p, j) => (
-              <p key={j} className="terminos-parrafo">{p}</p>
-            ))}
-          </section>
-        ))}
+        <div className="terminos-secciones">
+          {terminosData.secciones.map((sec, i) => (
+            <section key={i} className="terminos-seccion">
+              <h2 className="terminos-seccion-titulo">{sec.titulo}</h2>
+              {sec.parrafos.map((p, j) => (
+                <p key={j} className="terminos-parrafo">{p}</p>
+              ))}
+            </section>
+          ))}
+        </div>
       </div>
     </div>
   )

@@ -6,26 +6,49 @@ import { useNavigate } from 'react-router-dom'
  * a una función que requiere cuenta (favoritos, puntos, perfil).
  *
  * Props:
- *   isOpen   - booleano
- *   onClose  - función para cerrarlo
+ *   isOpen     - booleano
+ *   onClose    - función para cerrarlo
+ *   triggerRef - ref opcional al elemento disparador (ej. botón de corazón)
+ *                para devolver el foco accesible al cerrarse.
  */
-export function AccountBottomSheet({ isOpen, onClose }) {
+export function AccountBottomSheet({ isOpen, onClose, triggerRef }) {
   const navigate = useNavigate()
   const sheetRef = useRef(null)
   const closeRef = useRef(null)
+  const prevActiveElementRef = useRef(null)
 
-  // Foco al abrir
+  // Guardar elemento activo previo y mover foco al botón de descarte accesible
   useEffect(() => {
-    if (isOpen && closeRef.current) {
-      closeRef.current.focus()
+    if (isOpen) {
+      prevActiveElementRef.current = triggerRef?.current || document.activeElement
+      // Pequeño timeout para asegurar que el modal se renderizó
+      const timer = setTimeout(() => {
+        closeRef.current?.focus()
+      }, 50)
+      return () => clearTimeout(timer)
     }
-  }, [isOpen])
+  }, [isOpen, triggerRef])
 
-  // Cerrar con Escape
+  // Devolver foco al elemento disparador al cerrarse
+  function handleDismiss() {
+    onClose()
+    setTimeout(() => {
+      if (triggerRef?.current) {
+        triggerRef.current.focus?.()
+      } else if (prevActiveElementRef.current) {
+        prevActiveElementRef.current.focus?.()
+      }
+    }, 50)
+  }
+
+  // Cerrar con tecla Escape
   useEffect(() => {
     if (!isOpen) return
     function onKey(e) {
-      if (e.key === 'Escape') handleDismiss()
+      if (e.key === 'Escape') {
+        e.preventDefault()
+        handleDismiss()
+      }
     }
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
@@ -45,13 +68,6 @@ export function AccountBottomSheet({ isOpen, onClose }) {
 
   if (!isOpen) return null
 
-  function handleDismiss() {
-    try {
-      sessionStorage.setItem('maderas_guest_dismissed_auth', '1')
-    } catch (_) {}
-    onClose()
-  }
-
   function handleRegister() {
     onClose()
     navigate('/registro')
@@ -66,7 +82,7 @@ export function AccountBottomSheet({ isOpen, onClose }) {
     <div
       className="bottom-sheet-overlay"
       onClick={handleDismiss}
-      aria-hidden="true"
+      role="presentation"
     >
       <div
         ref={sheetRef}
@@ -96,14 +112,14 @@ export function AccountBottomSheet({ isOpen, onClose }) {
         <div className="bottom-sheet-actions">
           <button
             type="button"
-            className="btn-primary bottom-sheet-btn"
+            className="btn btn-primary bottom-sheet-btn"
             onClick={handleRegister}
           >
             Crear cuenta
           </button>
           <button
             type="button"
-            className="btn-secondary bottom-sheet-btn"
+            className="btn btn-secondary bottom-sheet-btn"
             onClick={handleLogin}
           >
             Iniciar sesión
@@ -124,10 +140,8 @@ export function AccountBottomSheet({ isOpen, onClose }) {
 }
 
 /**
- * Hook para manejar el flujo de invitado:
- * - Si el usuario está logueado, ejecuta la acción.
- * - Si no, verifica sessionStorage; si ya cerró el panel en esta sesión,
- *   no molesta de nuevo. Si no, abre el bottom sheet.
+ * Hook para requerir autenticación en acciones:
+ * Abre el panel siempre que un invitado active una función protegida.
  */
 export function useGuestGuard(user, { onOpen }) {
   function requireAuth(action) {
@@ -135,9 +149,6 @@ export function useGuestGuard(user, { onOpen }) {
       action()
       return
     }
-    try {
-      if (sessionStorage.getItem('maderas_guest_dismissed_auth')) return
-    } catch (_) {}
     onOpen()
   }
 

@@ -20,12 +20,13 @@ export function Header() {
           {isHome ? (
             <Link to="/" className="header-brand-link" aria-label="MADERAS - Inicio">
               <div className="header-logo-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <rect x="3" y="3" width="18" height="18" rx="4" />
-                  <path d="M7 8h10" />
-                  <path d="M7 12h10" />
-                  <path d="M7 16h6" />
-                </svg>
+                <img
+                  src="/img/logo-isotipo.webp"
+                  alt="Isotipo artesanal M de MADERAS"
+                  className="header-logo-img"
+                  width="38"
+                  height="24"
+                />
               </div>
               <span className="header-brand-name">MADERAS</span>
             </Link>
@@ -48,12 +49,13 @@ export function Header() {
           {!isHome && (
             <Link to="/" className="header-brand-link header-brand-internal" aria-label="MADERAS - Ir a inicio">
               <div className="header-logo-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <rect x="3" y="3" width="18" height="18" rx="4" />
-                  <path d="M7 8h10" />
-                  <path d="M7 12h10" />
-                  <path d="M7 16h6" />
-                </svg>
+                <img
+                  src="/img/logo-isotipo.webp"
+                  alt="Isotipo artesanal M de MADERAS"
+                  className="header-logo-img"
+                  width="38"
+                  height="24"
+                />
               </div>
               <span className="header-brand-name">MADERAS</span>
             </Link>
