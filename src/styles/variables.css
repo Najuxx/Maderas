@@ -1,0 +1,186 @@
+/* =========================================================
+   MADERAS · Tokens de diseño (Sección 3 & 4)
+   ========================================================= */
+
+:root {
+  /* Paleta oficial de DESIGN.md */
+  --crema:    #ede0d4; /* fondo general */
+  --arena:    #e6ccb2; /* tarjetas y superficies */
+  --miel:     #ddb892; /* chips, estados inactivos */
+  --caramelo: #b08968; /* SOLO decorativo (contraste 2.45 sobre crema: nunca para texto) */
+  --nuez:     #7f5539; /* botón principal, títulos */
+  --canela:   #9c6644; /* enlaces, estados activos (texto grande o íconos) */
+  --texto:    #2b1d14; /* texto principal (agregado para contraste) */
+  --error:    #9b1c1c; /* 6.29 sobre crema */
+  --exito:    #2f6b3a; /* 4.94 sobre crema */
+
+  /* Mapeo semántico por defecto (Tema claro) */
+  --bg-page: var(--crema);
+  --bg-surface: var(--arena);
+  --bg-card: var(--arena);
+  --bg-subtle: #f5ece3;
+  --bg-nav: var(--arena);
+  
+  --color-text: var(--texto);
+  --color-text-muted: var(--nuez);
+  --color-text-light: #523a2b;
+  
+  --color-primary: var(--nuez);
+  --color-primary-hover: #6a442b;
+  --color-primary-text: var(--crema);
+  
+  --color-secondary: var(--canela);
+  --color-chip-bg: var(--miel);
+  --color-chip-text: var(--texto);
+  --color-chip-active-bg: var(--nuez);
+  --color-chip-active-text: var(--crema);
+  
+  --color-border: rgba(127, 85, 57, 0.25);
+  --color-focus: var(--texto);
+
+  /* Tipografía */
+  --font-family: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  --font-size-base: 16px;
+  --line-height-base: 1.5;
+
+  /* Espaciado en múltiplos de 4 px */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* Bordes redondeados */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+
+  /* Tamaño mínimo para áreas táctiles (48px) */
+  --touch-target: 48px;
+
+  /* Sombras sutiles y transiciones */
+  --shadow-sm: 0 2px 6px rgba(43, 29, 20, 0.08);
+  --shadow-md: 0 4px 16px rgba(43, 29, 20, 0.12);
+  --shadow-lg: 0 8px 24px rgba(43, 29, 20, 0.18);
+  --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =========================================================
+   Tema oscuro (Sección 3 & 9)
+   fondo --texto (#2b1d14), texto --crema (12.58), acentos --miel (8.8) y --caramelo (5.14)
+   ========================================================= */
+html[data-theme="dark"] {
+  --bg-page: #1f140e;
+  --bg-surface: #2b1d14;
+  --bg-card: #38251a;
+  --bg-subtle: #452f22;
+  --bg-nav: #261911;
+
+  --color-text: var(--crema);
+  --color-text-muted: var(--miel);
+  --color-text-light: #f5ebe0;
+
+  --color-primary: var(--miel);
+  --color-primary-hover: #e8caa6;
+  --color-primary-text: var(--texto);
+
+  --color-secondary: var(--caramelo);
+  --color-chip-bg: #422d20;
+  --color-chip-text: var(--crema);
+  --color-chip-active-bg: var(--miel);
+  --color-chip-active-text: var(--texto);
+
+  --color-border: rgba(221, 184, 146, 0.3);
+  --color-focus: var(--crema);
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+/* =========================================================
+   Tamaños de texto (Sección 9): A / A+ / A++
+   ========================================================= */
+html[data-texto="normal"] {
+  --font-size-base: 16px;
+}
+
+html[data-texto="grande"] {
+  --font-size-base: 18px;
+}
+
+html[data-texto="muy-grande"] {
+  --font-size-base: 20px;
+}
+
+/* =========================================================
+   Interruptores de Accesibilidad (Sección 9)
+   ========================================================= */
+
+/* Alto contraste */
+html[data-contraste="alto"] {
+  --color-text: #000000;
+  --bg-page: #ffffff;
+  --bg-surface: #f3f3f3;
+  --bg-card: #ffffff;
+  --color-border: #000000;
+  --color-primary: #000000;
+  --color-primary-text: #ffffff;
+  --color-secondary: #000000;
+  --color-chip-bg: #e0e0e0;
+  --color-chip-text: #000000;
+  --color-chip-active-bg: #000000;
+  --color-chip-active-text: #ffffff;
+}
+
+html[data-theme="dark"][data-contraste="alto"] {
+  --color-text: #ffffff;
+  --bg-page: #000000;
+  --bg-surface: #121212;
+  --bg-card: #1e1e1e;
+  --color-border: #ffffff;
+  --color-primary: #ffffff;
+  --color-primary-text: #000000;
+  --color-secondary: #ffffff;
+  --color-chip-bg: #2a2a2a;
+  --color-chip-text: #ffffff;
+  --color-chip-active-bg: #ffffff;
+  --color-chip-active-text: #000000;
+}
+
+/* Subrayar enlaces y botones */
+html[data-subrayado="true"] a,
+html[data-subrayado="true"] button,
+html[data-subrayado="true"] .btn,
+html[data-subrayado="true"] .nav-item {
+  text-decoration: underline !important;
+  text-underline-offset: 4px;
+}
+
+/* Más espacio en el texto */
+html[data-espaciado="amplio"] * {
+  letter-spacing: 0.08em !important;
+  word-spacing: 0.14em !important;
+  line-height: 1.8 !important;
+}
+
+/* Pausar animaciones */
+html[data-animaciones="pausadas"] *,
+html[data-animaciones="pausadas"] *::before,
+html[data-animaciones="pausadas"] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Resaltar el foco */
+html[data-foco="resaltado"] *:focus-visible {
+  outline: 4px solid #f59e0b !important;
+  outline-offset: 3px !important;
+}

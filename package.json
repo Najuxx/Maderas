@@ -1,0 +1,25 @@
+{
+  "name": "maderas",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy:check": "node --env-file=.env.local scripts/deploy.mjs --dry",
+    "deploy": "npm run build && node --env-file=.env.local scripts/deploy.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.48.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "basic-ftp": "^6.2.6",
+    "sharp": "^0.35.5",
+    "vite": "^6.0.7"
+  }
+}

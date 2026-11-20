@@ -1,0 +1,673 @@
+/* =========================================================
+   MADERAS · Auth, Favoritos, FAQ, Términos (Paso 4)
+   ========================================================= */
+
+/* ---- Páginas de autenticación ---- */
+.auth-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-6) var(--space-4) calc(var(--space-6) + 72px);
+  min-height: 60vh;
+  gap: var(--space-4);
+}
+
+.auth-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--color-primary);
+}
+.auth-logo svg {
+  width: 56px;
+  height: 56px;
+}
+.auth-logo span {
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  color: var(--color-primary);
+}
+
+.auth-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  text-align: center;
+  margin: 0;
+}
+
+.auth-subtitle {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  margin: 0;
+  max-width: 320px;
+}
+
+/* ---- Formulario ---- */
+.auth-form {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.auth-field-check {
+  gap: var(--space-2);
+}
+
+.auth-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.auth-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 var(--space-3);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--bg-surface);
+  color: var(--color-text);
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  box-sizing: border-box;
+}
+.auth-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 20%, transparent);
+}
+.auth-input--error {
+  border-color: var(--color-error) !important;
+}
+.auth-input-padded {
+  padding-right: 48px;
+}
+.auth-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.auth-toggle-pass {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  transition: color var(--transition);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+}
+.auth-toggle-pass:hover {
+  color: var(--color-primary);
+}
+.auth-toggle-pass:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ---- Error de campo ---- */
+.auth-field-error {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--color-error);
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+.auth-field-error svg {
+  flex-shrink: 0;
+}
+.auth-error-general {
+  padding: var(--space-2) var(--space-3);
+  background-color: color-mix(in srgb, var(--color-error) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-error) 30%, transparent);
+  border-radius: var(--radius-md);
+}
+
+/* ---- Indicador de seguridad de contraseña ---- */
+.password-strength {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: 4px;
+}
+.password-strength-bars {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+}
+.password-strength-bar {
+  height: 4px;
+  flex: 1;
+  border-radius: 2px;
+  transition: background-color 0.3s;
+}
+.password-strength-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  min-width: 40px;
+  text-align: right;
+}
+
+/* ---- Checkbox de términos ---- */
+.auth-check-label {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: var(--color-text);
+  line-height: 1.4;
+}
+.auth-checkbox {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  margin-top: 1px;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+}
+
+/* ---- Botón principal de auth ---- */
+.auth-submit-btn {
+  width: 100%;
+  height: 52px;
+  font-size: 1rem;
+}
+
+/* ---- Links secundarios ---- */
+.auth-alt-link {
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+.auth-alt-link a {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: underline;
+}
+.auth-forgot {
+  font-size: 0.8rem;
+  color: var(--color-primary);
+  text-align: right;
+  display: block;
+  margin-top: 4px;
+  text-decoration: underline;
+}
+
+/* ---- Social ---- */
+.auth-social {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+.auth-social-label {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+.auth-social-btns {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+}
+.auth-social-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0 var(--space-4);
+  height: 52px;
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--color-border);
+  background-color: var(--bg-surface);
+  color: var(--color-text);
+  font-size: 0.9rem;
+  font-weight: 600;
+  min-width: 140px;
+  justify-content: center;
+  cursor: not-allowed;
+  opacity: 0.6;
+  position: relative;
+}
+
+/* ---- Tarjeta de éxito ---- */
+.auth-success-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+  padding: var(--space-6) var(--space-4);
+}
+.auth-success-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background-color: color-mix(in srgb, var(--color-success) 15%, transparent);
+  color: var(--color-success);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.auth-error-icon {
+  background-color: color-mix(in srgb, var(--color-error) 15%, transparent);
+  color: var(--color-error);
+}
+.auth-success-msg {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+/* =========================================================
+   BOTTOM SHEET (panel de cuenta para invitados)
+   ========================================================= */
+.bottom-sheet-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  z-index: 200;
+  display: flex;
+  align-items: flex-end;
+  animation: fadeIn 0.2s ease;
+}
+
+.bottom-sheet {
+  background-color: var(--bg-page);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  padding: var(--space-2) var(--space-5) var(--space-6);
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  animation: slideUp 0.25s ease;
+}
+
+.bottom-sheet-drag-handle {
+  width: 36px;
+  height: 4px;
+  background-color: var(--color-border);
+  border-radius: 2px;
+  margin-bottom: var(--space-2);
+  flex-shrink: 0;
+}
+
+.bottom-sheet-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--bg-surface);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom-sheet-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text);
+  text-align: center;
+  margin: 0;
+}
+
+.bottom-sheet-desc {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.bottom-sheet-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+}
+
+.bottom-sheet-btn {
+  width: 100%;
+  height: 52px;
+  font-size: 1rem;
+}
+
+.bottom-sheet-dismiss {
+  height: 48px;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  text-decoration: underline;
+  margin-top: var(--space-1);
+  width: 100%;
+}
+.bottom-sheet-dismiss:hover {
+  color: var(--color-text);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* =========================================================
+   FAVORITOS
+   ========================================================= */
+.fav-btn--active,
+.product-card-fav-btn--active {
+  color: var(--color-primary) !important;
+}
+
+.favorites-guest,
+.favorites-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-8) var(--space-4);
+  text-align: center;
+}
+
+.favorites-icon-wrap {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background-color: var(--bg-surface);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.favorites-empty-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.favorites-empty-text {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.favorites-guest-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  width: 100%;
+  max-width: 280px;
+}
+.favorites-guest-actions .btn-primary,
+.favorites-guest-actions .btn-secondary {
+  width: 100%;
+  height: 52px;
+  font-size: 1rem;
+}
+
+.favorites-cta {
+  min-width: 200px;
+  height: 52px;
+  font-size: 1rem;
+}
+
+/* Lista de favoritos */
+.favorites-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-4) 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.favorite-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2);
+  transition: background-color var(--transition);
+}
+
+.favorite-item-img-link {
+  flex-shrink: 0;
+}
+
+.favorite-item-img {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
+
+.favorite-item-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.favorite-item-name-link {
+  text-decoration: none;
+  color: var(--color-text);
+}
+.favorite-item-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.favorite-item-price {
+  font-weight: 700;
+  color: var(--color-primary);
+  font-size: 0.95rem;
+}
+.favorite-item-material {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.favorite-item-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  flex-shrink: 0;
+}
+
+.favorite-add-btn,
+.favorite-remove-btn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  transition: background-color var(--transition), color var(--transition);
+}
+.favorite-add-btn {
+  color: var(--color-primary);
+  background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
+}
+.favorite-add-btn:hover:not(:disabled) {
+  background-color: color-mix(in srgb, var(--color-primary) 20%, transparent);
+}
+.favorite-add-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.favorite-remove-btn {
+  color: var(--color-text-muted);
+  background-color: var(--bg-page);
+}
+.favorite-remove-btn:hover {
+  background-color: color-mix(in srgb, var(--color-error) 10%, transparent);
+  color: var(--color-error);
+}
+
+/* =========================================================
+   FAQ
+   ========================================================= */
+.faq-page {
+  max-width: 640px;
+}
+
+.faq-list {
+  margin-top: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.faq-item {
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  transition: border-color var(--transition);
+}
+.faq-item--open {
+  border-color: var(--color-primary);
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text);
+  text-align: left;
+  min-height: 56px;
+  transition: background-color var(--transition);
+}
+.faq-question:hover {
+  background-color: color-mix(in srgb, var(--color-primary) 6%, transparent);
+}
+.faq-question:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+}
+
+.faq-chevron {
+  flex-shrink: 0;
+  color: var(--color-primary);
+}
+
+.faq-answer {
+  padding: 0 var(--space-4) var(--space-4);
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+.faq-answer p {
+  margin: 0;
+}
+
+/* =========================================================
+   TÉRMINOS Y CONDICIONES
+   ========================================================= */
+.terminos-page {
+  max-width: 680px;
+}
+
+.terminos-updated {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin: var(--space-1) 0 var(--space-4);
+}
+
+.terminos-aviso {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  background-color: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 25%, transparent);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  margin-bottom: var(--space-5);
+}
+.terminos-aviso svg {
+  flex-shrink: 0;
+  color: var(--color-primary);
+  margin-top: 1px;
+}
+
+.terminos-secciones {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.terminos-seccion-titulo {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: 0 0 var(--space-2);
+}
+
+.terminos-parrafo {
+  font-size: 0.9rem;
+  color: var(--color-text);
+  line-height: 1.65;
+  margin: 0 0 var(--space-2);
+}
+.terminos-parrafo:last-child {
+  margin-bottom: 0;
+}
+
+/* =========================================================
+   Responsive ajustes de auth en escritorio
+   ========================================================= */
+@media (min-width: 640px) {
+  .auth-page {
+    padding-top: var(--space-8);
+  }
+  .bottom-sheet {
+    border-radius: var(--radius-xl);
+    margin-bottom: var(--space-6);
+    box-shadow: var(--shadow-lg);
+  }
+  .bottom-sheet-overlay {
+    align-items: center;
+  }
+}

@@ -1,0 +1,198 @@
+/* =========================================================
+   MADERAS · Panel de Accesibilidad (Sección 9)
+   Wireframe: accesibilidad-panel.png con corrección sección 10
+   ========================================================= */
+
+/* Backdrop / Fondo oscurecido */
+.a11y-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(43, 29, 20, 0.45);
+  backdrop-filter: blur(2px);
+  z-index: 100;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+/* Contenedor del panel modal (slide-up) */
+.a11y-panel {
+  width: 100%;
+  max-width: 480px;
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-5) var(--space-5) var(--space-8);
+  max-height: 90vh;
+  overflow-y: auto;
+  border-top: 1px solid var(--color-border);
+  animation: slideUp 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.a11y-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+
+.a11y-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 0;
+}
+
+.a11y-close-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch-target);
+  height: var(--touch-target);
+  border-radius: var(--radius-full);
+  color: var(--color-text);
+  background-color: transparent;
+  transition: background-color var(--transition);
+}
+
+.a11y-close-btn:hover {
+  background-color: var(--color-chip-bg);
+}
+
+/* Selector de tamaño de texto */
+.a11y-text-size-section {
+  margin-bottom: var(--space-5);
+}
+
+.a11y-section-label {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+
+.a11y-text-size-pills {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--space-2);
+}
+
+.a11y-size-btn {
+  height: var(--touch-target);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  background-color: var(--color-chip-bg);
+  color: var(--color-chip-text);
+  font-weight: 700;
+  font-size: 1rem;
+  border: 1px solid transparent;
+  transition: all var(--transition);
+}
+
+.a11y-size-btn.active {
+  background-color: var(--color-primary);
+  color: var(--color-primary-text);
+  border-color: var(--color-primary);
+}
+
+/* Lista de interruptores (toggles) */
+.a11y-switches-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
+}
+
+.a11y-switch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--bg-card);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  gap: var(--space-3);
+}
+
+.a11y-switch-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.a11y-switch-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+.a11y-switch-desc {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  line-height: 1.3;
+  margin-top: 2px;
+  margin-bottom: 0;
+}
+
+/* Interruptor accesible (switch pill) */
+.a11y-switch-btn {
+  position: relative;
+  width: 52px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+  background-color: var(--color-chip-bg);
+  border: 2px solid transparent;
+  transition: background-color var(--transition);
+  cursor: pointer;
+}
+
+.a11y-switch-btn[aria-checked="true"] {
+  background-color: var(--exito);
+}
+
+.a11y-switch-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-full);
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: transform var(--transition);
+}
+
+.a11y-switch-btn[aria-checked="true"] .a11y-switch-thumb {
+  transform: translateX(20px);
+}
+
+/* Botón Reiniciar */
+.a11y-reset-btn {
+  width: 100%;
+  height: var(--touch-target);
+  border-radius: var(--radius-full);
+  background-color: var(--nuez);
+  color: var(--crema);
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity var(--transition);
+}
+
+.a11y-reset-btn:hover {
+  opacity: 0.92;
+}
